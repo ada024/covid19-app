@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Cov extends Equatable {
+class CovStatus extends Equatable {
   final String confirmed;
   final String deaths;
   final String recovered;
   final String active;
 
-  Cov({
+  CovStatus({
     @required this.confirmed,
     @required this.deaths,
     @required this.recovered,

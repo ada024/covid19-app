@@ -42,7 +42,7 @@ class CovBloc extends Bloc<CovEvent, CovState> {
   }
 
   Stream<CovState> _eitherLoadedOrErrorState(
-    Either<Failure, Cov> failureOrStatus,
+    Either<Failure, CovStatus> failureOrStatus,
   ) async* {
     yield failureOrStatus.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),

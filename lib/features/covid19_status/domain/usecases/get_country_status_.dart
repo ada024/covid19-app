@@ -8,13 +8,13 @@ import '../entities/cov.dart';
 import '../repositories/cov_repository.dart';
 
 
-class GetCountryStatus implements UseCase<Cov, Params> {
+class GetCountryStatus implements UseCase<CovStatus, Params> {
   final CovRepository repository;
 
   GetCountryStatus(this.repository);
 
   @override
-  Future<Either<Failure, Cov>> call(Params params) async {
+  Future<Either<Failure, CovStatus>> call(Params params) async {
     return await repository.getCountryStatus(params.country);
   }
 }

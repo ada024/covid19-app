@@ -13,7 +13,7 @@ class Empty extends CovState {}
 class Loading extends CovState {}
 
 class Loaded extends CovState {
-  final Cov cov;
+  final CovStatus cov;
 
   Loaded({@required this.cov});
 

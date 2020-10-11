@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/network/network_info.dart';
+import '../../../../core/network/network.dart';
 import '../../domain/entities/cov.dart';
 import '../../domain/repositories/cov_repository.dart';
 import '../datasources/covid_local_source.dart';
@@ -12,7 +12,7 @@ import '../datasources/covid_remote_source.dart';
 
 
 
-typedef Future<Cov> _CountryOrWorldStatus();
+typedef Future<CovStatus> _CountryOrWorldStatus();
 
 
 class CovRepositoryImpl implements CovRepository {
@@ -27,20 +27,20 @@ class CovRepositoryImpl implements CovRepository {
   });
 
   @override
-  Future<Either<Failure, Cov>> getCountryStatus(String country) async {
+  Future<Either<Failure, CovStatus>> getCountryStatus(String country) async {
     return await _getResult(() {
       return remoteSrc.getCountryStatus(country);
     });
   }
 
   @override
-  Future<Either<Failure, Cov>> getWorldStatus() async {
+  Future<Either<Failure, CovStatus>> getWorldStatus() async {
     return await _getResult(() {
       return remoteSrc.getWorldStatus();
     });
   }
 
-  Future<Either<Failure, Cov>> _getResult(_CountryOrWorldStatus countryOrWorldStatus) async {
+  Future<Either<Failure, CovStatus>> _getResult(_CountryOrWorldStatus countryOrWorldStatus) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteResult = await countryOrWorldStatus();

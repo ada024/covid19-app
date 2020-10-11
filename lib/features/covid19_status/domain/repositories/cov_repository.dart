@@ -5,6 +5,6 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class CovRepository {
-  Future<Either<Failure, Cov>> getCountryStatus(String country);
-  Future<Either<Failure, Cov>> getWorldStatus();
+  Future<Either<Failure, CovStatus>> getCountryStatus(String country);
+  Future<Either<Failure, CovStatus>> getWorldStatus();
 }

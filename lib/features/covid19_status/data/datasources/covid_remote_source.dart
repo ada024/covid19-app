@@ -8,8 +8,8 @@ import '../models/cov_model.dart';
 
 abstract class CovidRemoteSrc {
 
-  Future<CovModel> getCountryStatus(String country);
-  Future<CovModel> getWorldStatus();
+  Future<CovstatusModel> getCountryStatus(String country);
+  Future<CovstatusModel> getWorldStatus();
 }
 
 class CovidRemoteDataSourceImpl implements CovidRemoteSrc {
@@ -18,14 +18,14 @@ class CovidRemoteDataSourceImpl implements CovidRemoteSrc {
   CovidRemoteDataSourceImpl({@required this.client});
 
   @override
-  Future<CovModel> getCountryStatus(String country) =>
+  Future<CovstatusModel> getCountryStatus(String country) =>
       _getCovidStatusFromApi('http://numbersapi.com/$country');
 
   @override
-  Future<CovModel> getWorldStatus() =>
+  Future<CovstatusModel> getWorldStatus() =>
       _getCovidStatusFromApi('http://numbersapi.com/world');
 
-  Future<CovModel> _getCovidStatusFromApi(String url) async {
+  Future<CovstatusModel> _getCovidStatusFromApi(String url) async {
     final res = await client.get(
       url,
       headers: {
@@ -34,7 +34,7 @@ class CovidRemoteDataSourceImpl implements CovidRemoteSrc {
     );
 
     if (res.statusCode == 200) {
-      return CovModel.fromJson(json.decode(res.body));
+      return CovstatusModel.fromJson(json.decode(res.body));
     } else {
       throw ServerException();
     }

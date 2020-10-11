@@ -5,13 +5,13 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/cov.dart';
 import '../repositories/cov_repository.dart';
 
-class GetWorldStatus implements UseCase<Cov, NoParams> {
+class GetWorldStatus implements UseCase<CovStatus, NoParams> {
   final CovRepository repository;
 
   GetWorldStatus(this.repository);
 
   @override
-  Future<Either<Failure, Cov>> call(NoParams params) async {
+  Future<Either<Failure, CovStatus>> call(NoParams params) async {
     return await repository.getWorldStatus();
   }
 }
