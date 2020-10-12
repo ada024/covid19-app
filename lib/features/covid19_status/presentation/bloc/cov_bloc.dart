@@ -12,7 +12,6 @@ import 'package:meta/meta.dart';
 import './bloc.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 const String ACCESS_DENIED_MESSAGE = 'Access denied';
 
 class CovBloc extends Bloc<CovEvent, CovState> {
