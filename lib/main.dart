@@ -1,27 +1,32 @@
+import 'package:covid19_app/features/covid19_status/presentation/core/app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'features/covid19_status/presentation/pages/status_page.dart';
-import 'injection.dart' as di;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'features/covid19_status/presentation/bloc/bloc.dart';
+import 'features/covid19_status/presentation/pages/screens.dart';
+import 'features/covid19_status/simple_bloc_observer.dart';
+import 'injection.dart';
+import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await di.init();
-  runApp(Covid19App());
-}
-
-class Covid19App extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'COVID-19 status app',
-      theme: ThemeData(
-        primaryColor: Colors.green.shade800,
-        accentColor: Colors.green.shade600,
+  String env = Environment.prod;
+  assert(() {
+    env = Environment.dev;
+    Bloc.observer = SimpleBlocObserver();
+    return true;
+  }());
+  configureInjection(env);
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<CovBloc>(
+        create: (context) => getIt<CovBloc>()..add(GetStatusForWorld()),
       ),
-      home: StatusPage(),
-    );
-  }
+    ],
+    child: const Covid19App(),
+  ));
 }

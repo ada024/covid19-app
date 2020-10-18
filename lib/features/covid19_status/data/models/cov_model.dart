@@ -17,7 +17,7 @@ class CovstatusModel  extends CovStatus {
     @required String active,
   }) : super(confirmed: confirmed, deaths: deaths,recovered: recovered, active: active);
 
-  factory CovstatusModel.fromJson(Map<String, dynamic> json) {
+  factory CovstatusModel.fromJson(dynamic json) {
     return CovstatusModel(
       confirmed: json['confirmed'] as String,
       deaths: json['deaths'] as String,
@@ -26,7 +26,7 @@ class CovstatusModel  extends CovStatus {
     );
   }
   Map<String, dynamic> toJson() {
-    return {
+    return  {
       'confirmed': confirmed,
       'deaths': deaths,
       'recovered': recovered,

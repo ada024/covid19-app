@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,7 @@ abstract class CovidLocalDataSrc {
 
 const CACHED_DATA = 'CACHED_DATA';
 
+@LazySingleton(as: CovidLocalDataSrc)
 class CovidLocalDataSrceImpl implements CovidLocalDataSrc {
   final SharedPreferences sharPref;
 

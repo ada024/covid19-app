@@ -1,5 +1,6 @@
 import 'package:covid19_app/features/covid19_status/data/models/cov_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/error/failures.dart';
@@ -14,7 +15,7 @@ import '../datasources/covid_remote_source.dart';
 
 typedef Future<CovStatus> _CountryOrWorldStatus();
 
-
+@LazySingleton(as: CovRepository)
 class CovRepositoryImpl implements CovRepository {
   final CovidRemoteSrc remoteSrc;
   final CovidLocalDataSrc localsrc;
