@@ -2,8 +2,8 @@
 
 A CoVid19 app that show statistic for covid19
 
-* Fetch data from custom-api
-* Also tests for repository, network and widgets
+* Fetch data from [custom-api](https://github.com/ada024/covid19-customapi)
+* Also use-cases tests 
 
 ###### On Android & iOS
 <p float="left">
